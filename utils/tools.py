@@ -78,9 +78,9 @@ class EarlyStopping:
 
         if self.accelerator is not None:
             model = self.accelerator.unwrap_model(model)
-            torch.save(model.state_dict(), path + '/' + 'checkpoint')
+            torch.save(model.state_dict(), path + '/' + 'checkpoint.pth')  # 添加 .pth
         else:
-            torch.save(model.state_dict(), path + '/' + 'checkpoint')
+            torch.save(model.state_dict(), path + '/' + 'checkpoint.pth')  # 添加 .pth
         self.val_loss_min = val_loss
 
 

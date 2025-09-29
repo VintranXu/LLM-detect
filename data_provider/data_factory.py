@@ -1,4 +1,5 @@
 from data_provider.data_loader import Dataset_ETT_hour, Dataset_ETT_minute, Dataset_Custom, Dataset_M4
+from data_provider.fault_data_loader import Dataset_Fault_Classification
 from torch.utils.data import DataLoader
 
 data_dict = {
@@ -10,6 +11,7 @@ data_dict = {
     'Traffic': Dataset_Custom,
     'Weather': Dataset_Custom,
     'm4': Dataset_M4,
+    'fault_cls': Dataset_Fault_Classification  # 故障分类
 }
 
 
@@ -42,6 +44,33 @@ def data_provider(args, flag):
             freq=freq,
             seasonal_patterns=args.seasonal_patterns
         )
+
+        # 故障数据集的特殊处理
+    elif args.data == 'fault_cls':
+        data_set = Data(
+            root_path=args.root_path,
+            data_path=args.data_path,
+            flag=flag,
+            size=[args.seq_len, args.label_len, args.pred_len],
+            features=args.features,
+            target=args.target,
+            scale=args.scale if hasattr(args, 'scale') else True,
+            timeenc=timeenc,
+            freq=freq,
+            percent=percent,
+            downsample_step = args.downsample_step, 
+            seasonal_patterns=args.seasonal_patterns
+        )
+        
+        # 故障分类任务可能需要不同的批次大小和shuffle策略
+        if args.data == 'fault_cls':
+            if flag == 'train':
+                shuffle_flag = True
+            else:
+                shuffle_flag = False
+            # 分类任务通常不需要drop_last
+            drop_last = False
+
     else:
         data_set = Data(
             root_path=args.root_path,

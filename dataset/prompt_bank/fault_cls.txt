@@ -1,0 +1,18 @@
+**System Description**
+
+The secondary loop of a High-Temperature Gas-cooled Reactor (HTGR) nuclear power plant operates on a **Rankine cycle**. Key components include a **once-through steam generator (OTSG)**, turbine, condenser, feedwater heater system, deaerator, and feedwater system. The system uses multi-stage heat regeneration to improve **thermal efficiency**, and there are complex thermodynamic coupling relationships between each component.
+
+
+**Monitoring Method**
+
+The system's health is monitored using **11 residual signals**, with each signal representing a specific physical parameter deviation in a particular piece of equipment.
+
+* **Residuals 1-2**: Monitor the heat transfer coefficient in the high-pressure heat exchanger's condensation zone.
+* **Residuals 3-4**: Monitor the secondary-side water level of the OTSG.
+* **Residuals 5-8**: Monitor the feedwater pump's head and power.
+* **Residual 9**: Monitors the condenser's cooling water outlet temperature.
+* **Residuals 10-11**: Monitor the deaerator's feedwater outlet temperature.
+
+**Fault Types**
+
+Common fault types include equipment **fouling/scaling**, pipeline **blockage**, **pump degradation**, **control system malfunctions**, and **sensor faults**. Each of these faults generates a unique characteristic response pattern in the relevant residual signals.

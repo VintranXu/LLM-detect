@@ -11,6 +11,8 @@ d_ff=32
 
 comment='TimeLLM-Weather'
 
+# 这个脚本包含四个 accelerate launch 命令，每个都用于训练不同预测长度的 TimeLLM 天气预测模型
+
 accelerate launch --multi_gpu --mixed_precision bf16 --num_processes $num_process --main_process_port $master_port run_main.py \
   --task_name long_term_forecast \
   --is_training 1 \
